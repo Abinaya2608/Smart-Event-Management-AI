@@ -1,0 +1,704 @@
+{% extends "base.html" %}
+
+{% block title %}Privacy & Terms | EventOps AI{% endblock %}
+
+{% block content %}
+
+<style>
+    .legal-page {
+        color: #25304a;
+        background: #f8f9ff;
+        min-height: 100vh;
+        padding-bottom: 60px;
+    }
+
+    .legal-hero {
+        position: relative;
+        overflow: hidden;
+        padding: 65px 25px;
+        border-radius: 26px;
+        background: linear-gradient(125deg, #243b8a, #6550c8 65%, #8974ed);
+        color: white;
+    }
+
+    .legal-hero::before,
+    .legal-hero::after {
+        content: "";
+        position: absolute;
+        border: 1px solid rgba(255,255,255,.15);
+        border-radius: 50%;
+        pointer-events: none;
+    }
+
+    .legal-hero::before {
+        width: 300px;
+        height: 300px;
+        right: -65px;
+        top: -150px;
+    }
+
+    .legal-hero::after {
+        width: 220px;
+        height: 220px;
+        right: 70px;
+        bottom: -155px;
+    }
+
+    .hero-content {
+        position: relative;
+        z-index: 1;
+    }
+
+    .hero-label {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 14px;
+        border: 1px solid rgba(255,255,255,.3);
+        background: rgba(255,255,255,.12);
+        border-radius: 30px;
+        font-size: .82rem;
+        margin-bottom: 20px;
+    }
+
+    .hero-title {
+        font-size: clamp(2rem, 4vw, 3.2rem);
+        font-weight: 800;
+        letter-spacing: -1.5px;
+    }
+
+    .legal-highlight {
+        height: 100%;
+        background: white;
+        border: 1px solid #ecebfa;
+        border-radius: 18px;
+        padding: 23px;
+        transition: transform .25s, box-shadow .25s;
+    }
+
+    .legal-highlight:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 12px 28px rgba(47, 54, 100, .08);
+    }
+
+    .highlight-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 46px;
+        height: 46px;
+        border-radius: 14px;
+        background: #efedff;
+        color: #6250cb;
+        font-size: 1.35rem;
+        margin-bottom: 16px;
+    }
+
+    .legal-layout {
+        display: grid;
+        grid-template-columns: 245px minmax(0, 1fr);
+        gap: 25px;
+        align-items: start;
+    }
+
+    .legal-sidebar {
+        position: sticky;
+        top: 25px;
+        background: white;
+        border: 1px solid #e9e9f5;
+        border-radius: 18px;
+        padding: 22px 15px;
+    }
+
+    .sidebar-heading {
+        font-size: .76rem;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        color: #9298ae;
+        padding: 0 10px;
+        margin-bottom: 13px;
+    }
+
+    .legal-nav {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 11px 12px;
+        margin-bottom: 5px;
+        border-radius: 10px;
+        color: #606981;
+        text-decoration: none;
+        font-size: .91rem;
+        transition: all .2s;
+    }
+
+    .legal-nav:hover {
+        background: #f0efff;
+        color: #5c49c5;
+        transform: translateX(3px);
+    }
+
+    .legal-nav i {
+        font-size: 1.05rem;
+    }
+
+    .legal-document {
+        min-width: 0;
+    }
+
+    .legal-card {
+        background: white;
+        border: 1px solid #e9e9f5;
+        border-radius: 20px;
+        padding: 30px;
+        margin-bottom: 22px;
+        scroll-margin-top: 25px;
+    }
+
+    .legal-card-heading {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        padding-bottom: 22px;
+        margin-bottom: 22px;
+        border-bottom: 1px solid #ededf6;
+    }
+
+    .section-icon {
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 52px;
+        height: 52px;
+        background: linear-gradient(135deg, #eeecff, #e3eaff);
+        color: #5b50c8;
+        border-radius: 16px;
+        font-size: 1.5rem;
+    }
+
+    .legal-card h2 {
+        font-size: 1.55rem;
+        font-weight: 800;
+        margin: 0;
+        letter-spacing: -.4px;
+    }
+
+    .legal-card h3 {
+        font-size: 1.03rem;
+        font-weight: 750;
+        color: #343c60;
+        margin-top: 29px;
+        margin-bottom: 10px;
+        scroll-margin-top: 25px;
+    }
+
+    .legal-card p,
+    .legal-card li {
+        color: #687189;
+        font-size: .94rem;
+        line-height: 1.85;
+    }
+
+    .legal-card ul {
+        padding-left: 22px;
+    }
+
+    .legal-card li {
+        padding-left: 3px;
+        margin-bottom: 7px;
+    }
+
+    .legal-card li::marker {
+        color: #7664dc;
+    }
+
+    .welcome-card {
+        background: linear-gradient(120deg, #ffffff, #f3f1ff);
+        border: 1px solid #e7e2ff;
+        border-radius: 20px;
+        padding: 28px;
+        margin: 25px 0;
+    }
+
+    .welcome-card h2 {
+        font-size: 1.25rem;
+        font-weight: 800;
+        margin-bottom: 12px;
+    }
+
+    .welcome-card p {
+        color: #687189;
+        line-height: 1.8;
+        font-size: .94rem;
+    }
+
+    .legal-footer {
+        text-align: center;
+        border-top: 1px solid #e8e8f3;
+        margin-top: 30px;
+        padding-top: 30px;
+    }
+
+    .back-home {
+        display: inline-flex;
+        align-items: center;
+        gap: 9px;
+        padding: 12px 23px;
+        background: #fff;
+        color: #594bc0;
+        border: 1px solid #dcd7ff;
+        border-radius: 30px;
+        text-decoration: none;
+        font-weight: 650;
+        transition: all .2s;
+    }
+
+    .back-home:hover {
+        background: #5d4bc8;
+        color: #fff;
+        box-shadow: 0 8px 20px rgba(93,75,200,.2);
+    }
+
+    @media (max-width: 900px) {
+        .legal-layout {
+            grid-template-columns: 1fr;
+        }
+
+        .legal-sidebar {
+            position: static;
+        }
+
+        .legal-sidebar-links {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 4px;
+        }
+    }
+
+    @media (max-width: 576px) {
+        .legal-page {
+            padding-top: 20px !important;
+        }
+
+        .legal-hero {
+            padding: 42px 22px;
+            border-radius: 20px;
+        }
+
+        .legal-card {
+            padding: 22px 18px;
+            border-radius: 17px;
+        }
+
+        .legal-card h2 {
+            font-size: 1.3rem;
+        }
+
+        .legal-card-heading {
+            gap: 12px;
+        }
+
+        .section-icon {
+            width: 45px;
+            height: 45px;
+            font-size: 1.25rem;
+        }
+
+        .legal-sidebar-links {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .legal-highlight,
+        .legal-nav,
+        .back-home {
+            transition: none;
+        }
+    }
+</style>
+
+<div class="legal-page py-4">
+    <div class="container">
+
+        <!-- Hero -->
+        <section class="legal-hero mb-4">
+            <div class="hero-content">
+                <div class="hero-label">
+                    <i class="bi bi-shield-check"></i>
+                    TRUST & TRANSPARENCY
+                </div>
+
+                <h1 class="hero-title mb-3">
+                    Privacy, with<br>clarity.
+                </h1>
+
+                <p class="mb-4" style="max-width: 540px; line-height: 1.8; color: rgba(255,255,255,.85);">
+                    Your events deserve thoughtful planning.
+                    Your information deserves thoughtful care.
+                    Here's how EventOps AI approaches both.
+                </p>
+
+                <div class="d-flex align-items-center gap-2 flex-wrap"
+                     style="font-size: .85rem; color: rgba(255,255,255,.8);">
+                    <i class="bi bi-calendar3"></i>
+                    Last updated: October 2026
+                    <span class="mx-1">•</span>
+                    <i class="bi bi-file-earmark-text"></i>
+                    Policies & guidelines
+                </div>
+            </div>
+        </section>
+
+        <!-- Highlight Cards -->
+        <div class="row g-3 mb-4">
+            <div class="col-md-4">
+                <div class="legal-highlight">
+                    <div class="highlight-icon">
+                        <i class="bi bi-shield-lock"></i>
+                    </div>
+                    <h3 class="h6 fw-bold">Privacy matters</h3>
+                    <p class="small text-secondary mb-0" style="line-height: 1.7;">
+                        Understand how information may be collected,
+                        used, stored and shared.
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="legal-highlight">
+                    <div class="highlight-icon">
+                        <i class="bi bi-cpu"></i>
+                    </div>
+                    <h3 class="h6 fw-bold">Responsible AI</h3>
+                    <p class="small text-secondary mb-0" style="line-height: 1.7;">
+                        AI-assisted suggestions should be reviewed
+                        before important decisions.
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="legal-highlight">
+                    <div class="highlight-icon">
+                        <i class="bi bi-journal-check"></i>
+                    </div>
+                    <h3 class="h6 fw-bold">Clear expectations</h3>
+                    <p class="small text-secondary mb-0" style="line-height: 1.7;">
+                        Know the guidelines that apply when
+                        using our platform.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Introduction -->
+        <div class="welcome-card">
+            <h2>
+                <i class="bi bi-stars me-2" style="color:#6955d2;"></i>
+                Welcome to EventOps AI
+            </h2>
+            <p class="mb-0">
+                EventOps AI is a smart event management platform designed
+                to help users organize event-related information, manage
+                planning activities, and access useful insights through
+                technology. This page explains our approach to privacy
+                and outlines the conditions for using the platform.
+                By using EventOps AI, you acknowledge the practices and
+                terms described below.
+            </p>
+        </div>
+
+        <div class="legal-layout">
+
+            <!-- Table of Contents -->
+            <aside class="legal-sidebar">
+                <div class="sidebar-heading">On this page</div>
+
+                <nav class="legal-sidebar-links">
+                    <a class="legal-nav" href="#privacy-policy">
+                        <i class="bi bi-shield-lock"></i>
+                        Privacy Policy
+                    </a>
+
+                    <a class="legal-nav" href="#information">
+                        <i class="bi bi-person-lines-fill"></i>
+                        Information collected
+                    </a>
+
+                    <a class="legal-nav" href="#data-security">
+                        <i class="bi bi-database-lock"></i>
+                        Data & security
+                    </a>
+
+                    <a class="legal-nav" href="#data-sharing">
+                        <i class="bi bi-share"></i>
+                        Information sharing
+                    </a>
+
+                    <a class="legal-nav" href="#terms-conditions">
+                        <i class="bi bi-file-earmark-text"></i>
+                        Terms & Conditions
+                    </a>
+
+                    <a class="legal-nav" href="#responsible-use">
+                        <i class="bi bi-check2-circle"></i>
+                        Responsible use
+                    </a>
+
+                    <a class="legal-nav" href="#ai-information">
+                        <i class="bi bi-cpu"></i>
+                        AI-generated information
+                    </a>
+
+                    <a class="legal-nav" href="#contact">
+                        <i class="bi bi-envelope"></i>
+                        Contact
+                    </a>
+                </nav>
+            </aside>
+
+            <!-- Policy Content -->
+            <main class="legal-document">
+
+                <!-- Privacy Policy -->
+                <section class="legal-card" id="privacy-policy">
+                    <div class="legal-card-heading">
+                        <div class="section-icon">
+                            <i class="bi bi-shield-lock"></i>
+                        </div>
+                        <div>
+                            <h2>1. Privacy Policy</h2>
+                            <p class="mb-0 small">How information is handled</p>
+                        </div>
+                    </div>
+
+                    <h3 id="information">1.1 Information We May Collect</h3>
+                    <p>Depending on the features you use, the platform may process information such as:</p>
+                    <ul>
+                        <li>Basic account details, such as your name and email address.</li>
+                        <li>Event information, including event names, dates, venues, schedules, and planning details.</li>
+                        <li>Messages or feedback submitted through contact forms.</li>
+                        <li>Technical information required to operate and troubleshoot the application.</li>
+                    </ul>
+                    <p>
+                        The information actually collected depends on the features
+                        implemented and enabled in the current version of the platform.
+                    </p>
+
+                    <h3>1.2 How Information Is Used</h3>
+                    <p>Information may be used to:</p>
+                    <ul>
+                        <li>Provide and maintain event management features.</li>
+                        <li>Display event information and planning summaries.</li>
+                        <li>Respond to user enquiries and feedback.</li>
+                        <li>Improve application functionality and usability.</li>
+                        <li>Identify technical issues and help protect the platform.</li>
+                    </ul>
+
+                    <h3 id="data-security">1.3 Data Storage and Security</h3>
+                    <p>
+                        Information is handled through the application's configured
+                        storage and processing mechanisms. Reasonable precautions
+                        should be used to protect stored information against
+                        unauthorized access, alteration, or disclosure.
+                    </p>
+                    <p>
+                        However, no web application or method of electronic storage
+                        can guarantee absolute security. Users should avoid submitting
+                        passwords, payment card details, or other sensitive information
+                        through general-purpose forms.
+                    </p>
+
+                    <h3 id="data-sharing">1.4 Sharing of Information</h3>
+                    <p>
+                        Personal information should not be sold or disclosed to
+                        unrelated third parties for their own purposes. Information
+                        may be processed by hosting providers or other services
+                        configured to operate the platform, where applicable, or
+                        disclosed when required by law.
+                    </p>
+
+                    <h3>1.5 Cookies and Technical Data</h3>
+                    <p>
+                        The application may use session cookies or similar technical
+                        mechanisms to support essential functionality, such as
+                        maintaining a user's session. Additional analytics or
+                        tracking technologies should only be described here if they
+                        are actually implemented.
+                    </p>
+
+                    <h3>1.6 Data Retention and Deletion</h3>
+                    <p>
+                        Information may be retained for as long as necessary to
+                        provide the relevant functionality, maintain records, or
+                        meet applicable legal requirements. Requests to access,
+                        correct, or delete information can be directed to the
+                        project team, subject to applicable requirements and the
+                        capabilities of the application.
+                    </p>
+
+                    <h3>1.7 Third-Party Services</h3>
+                    <p>
+                        Some features may depend on third-party services, such as
+                        hosting platforms, external APIs, or data-processing tools.
+                        Those services may have their own privacy policies and
+                        terms. Their handling of information is governed by their
+                        applicable policies.
+                    </p>
+
+                    <h3>1.8 Children's Privacy</h3>
+                    <p>
+                        The platform is not specifically designed to collect
+                        children's personal information. Users should not submit
+                        another person's personal information without appropriate
+                        permission or a lawful basis.
+                    </p>
+
+                    <h3>1.9 Changes to This Policy</h3>
+                    <p class="mb-0">
+                        This Privacy Policy may be updated when the platform's
+                        features or data-handling practices change. The latest
+                        version will be published on this page.
+                    </p>
+                </section>
+
+                <!-- Terms and Conditions -->
+                <section class="legal-card" id="terms-conditions">
+                    <div class="legal-card-heading">
+                        <div class="section-icon">
+                            <i class="bi bi-file-earmark-text"></i>
+                        </div>
+                        <div>
+                            <h2>2. Terms & Conditions</h2>
+                            <p class="mb-0 small">Guidelines for using EventOps AI</p>
+                        </div>
+                    </div>
+
+                    <h3>2.1 Acceptance of Terms</h3>
+                    <p>
+                        By accessing or using EventOps AI, you agree to use the
+                        platform in accordance with these terms and all applicable
+                        laws. If you do not agree, you should discontinue use of
+                        the platform.
+                    </p>
+
+                    <h3 id="responsible-use">2.2 Permitted Use</h3>
+                    <p>You agree to use EventOps AI responsibly. You must not:</p>
+                    <ul>
+                        <li>Use the platform for unlawful, fraudulent, or harmful activities.</li>
+                        <li>Submit information that you are not authorized to share.</li>
+                        <li>Attempt to gain unauthorized access to accounts, systems, or data.</li>
+                        <li>Disrupt the platform or interfere with its normal operation.</li>
+                        <li>Misuse automated features or any information provided by the platform.</li>
+                    </ul>
+
+                    <h3>2.3 Event Information</h3>
+                    <p>
+                        Users are responsible for ensuring that the event details
+                        they submit are accurate, current, and appropriate for their
+                        intended use. The project team is not responsible for errors
+                        caused by incorrect or incomplete user-provided information.
+                    </p>
+
+                    <h3 id="ai-information">2.4 AI-Generated Information</h3>
+                    <p>
+                        Where AI-assisted features are available, their outputs
+                        may contain inaccuracies, omissions, or unsuitable
+                        recommendations. AI-generated suggestions are intended
+                        to support event planning and should be reviewed by a
+                        person before important decisions are made.
+                    </p>
+                    <p>
+                        Users remain responsible for confirming schedules, budgets,
+                        venue arrangements, availability, and other operational
+                        details with the relevant people or service providers.
+                    </p>
+
+                    <h3>2.5 Availability of the Platform</h3>
+                    <p>
+                        We aim to keep the application usable, but uninterrupted
+                        availability cannot be guaranteed. Features may be modified,
+                        temporarily unavailable, or discontinued for maintenance,
+                        technical reasons, or project updates.
+                    </p>
+
+                    <h3>2.6 Intellectual Property</h3>
+                    <p>
+                        The platform's original design, source code, branding, and
+                        other project materials are subject to applicable intellectual
+                        property rights. Users may not copy, redistribute, or
+                        commercially exploit protected materials without appropriate
+                        authorization.
+                    </p>
+                    <p>
+                        Users retain any rights they have in the content they submit,
+                        subject to the permissions needed to operate the platform.
+                    </p>
+
+                    <h3>2.7 Third-Party Links and Services</h3>
+                    <p>
+                        Links to external websites or services may be provided for
+                        convenience. EventOps AI does not control external services
+                        and is not responsible for their content, availability, or
+                        policies.
+                    </p>
+
+                    <h3>2.8 Limitation of Liability</h3>
+                    <p>
+                        To the extent permitted by applicable law, EventOps AI is
+                        provided on an as-available basis without a guarantee that
+                        every feature or output will be error-free. The project team
+                        is not responsible for losses arising from reliance on
+                        unverified information or interruptions in service.
+                    </p>
+                    <p>
+                        Nothing in these terms excludes or limits liability where
+                        such exclusion or limitation is prohibited by applicable law.
+                    </p>
+
+                    <h3>2.9 Changes to These Terms</h3>
+                    <p>
+                        These terms may be revised as the application evolves.
+                        Continued use after updated terms are published may be
+                        subject to the revised terms, to the extent permitted by law.
+                    </p>
+
+                    <h3 id="contact">2.10 Contact</h3>
+                    <p class="mb-0">
+                        For questions about this Privacy Policy or these Terms
+                        & Conditions, please use the Contact page available on
+                        the EventOps AI website.
+                    </p>
+                </section>
+
+            </main>
+        </div>
+
+        <!-- Footer -->
+        <footer class="legal-footer">
+            <div class="mb-3" style="font-size: 1.8rem; color: #6553ca;">
+                <i class="bi bi-calendar2-check"></i>
+            </div>
+
+            <h3 class="h6 fw-bold mb-2">EventOps AI</h3>
+            <p class="small text-secondary mb-4">
+                Smarter planning. Better-organized events.
+            </p>
+
+            <a href="{{ url_for('index') }}" class="back-home">
+                <i class="bi bi-arrow-left"></i>
+                Back to Home
+            </a>
+
+            <p class="small text-secondary mt-4 mb-0">
+                &copy; {{ 2026 }} EventOps AI. All rights reserved.
+            </p>
+        </footer>
+
+    </div>
+</div>
+
+{% endblock %}
