@@ -1,0 +1,383 @@
+{% extends "base.html" %}
+
+{% block title %}Contact Us | EventOps AI{% endblock %}
+
+{% block extra_css %}
+<style>
+    .contact-hero {
+        background: linear-gradient(110deg, #2864f0 0%, #7025ed 55%, #cf2e91 100%);
+        color: white;
+        padding: 48px 25px;
+        border-radius: 22px;
+        text-align: center;
+        margin-bottom: 40px;
+    }
+
+    .contact-hero h1 {
+        font-size: 2.3rem;
+        font-weight: 700;
+        margin-bottom: 12px;
+    }
+
+    .contact-hero p {
+        max-width: 650px;
+        margin: auto;
+        color: rgba(255, 255, 255, 0.92);
+        line-height: 1.8;
+    }
+
+    .contact-card {
+        background: #fff;
+        border: 1px solid #e6eaf0;
+        border-radius: 15px;
+        padding: 28px;
+        height: 100%;
+        box-shadow: 0 4px 18px rgba(25, 45, 80, 0.04);
+    }
+
+    .contact-card h4 {
+        color: #243b64;
+        font-weight: 700;
+        margin-bottom: 22px;
+    }
+
+    .contact-info-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 14px;
+        margin-bottom: 23px;
+    }
+
+    .contact-icon {
+        min-width: 43px;
+        height: 43px;
+        border-radius: 11px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #eef2ff;
+        color: #4263a5;
+        font-size: 1.2rem;
+    }
+
+    .contact-info-item h6 {
+        margin-bottom: 5px;
+        color: #243b64;
+        font-weight: 600;
+    }
+
+    .contact-info-item p,
+    .contact-info-item a {
+        margin: 0;
+        color: #657187;
+        font-size: 0.94rem;
+        overflow-wrap: anywhere;
+    }
+
+    .contact-info-item a {
+        text-decoration: none;
+    }
+
+    .contact-info-item a:hover {
+        color: #7025ed;
+    }
+
+    .contact-form .form-label {
+        font-weight: 600;
+        color: #34435b;
+    }
+
+    .contact-form .form-control {
+        border: 1px solid #dce2eb;
+        border-radius: 9px;
+        padding: 12px 14px;
+    }
+
+    .contact-form .form-control:focus {
+        border-color: #7025ed;
+        box-shadow: 0 0 0 3px rgba(112, 37, 237, 0.10);
+    }
+
+    .btn-contact {
+        background: linear-gradient(110deg, #2864f0, #7025ed);
+        color: #fff;
+        border: none;
+        border-radius: 9px;
+        padding: 12px 22px;
+        font-weight: 600;
+        transition: opacity 0.2s ease;
+    }
+
+    .btn-contact:hover {
+        color: white;
+        opacity: 0.92;
+    }
+
+    .social-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 12px;
+    }
+
+    .social-link {
+        width: 43px;
+        height: 43px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid #e1e6ef;
+        border-radius: 11px;
+        color: #4263a5;
+        font-size: 1.2rem;
+        text-decoration: none;
+        transition: all 0.2s ease;
+    }
+
+    .social-link:hover {
+        background: #eef2ff;
+        border-color: #c9d4ff;
+        color: #7025ed;
+        transform: translateY(-2px);
+    }
+
+    .contact-bottom {
+        background: #f4f7fb;
+        padding: 24px;
+        border-radius: 13px;
+        text-align: center;
+        margin-top: 35px;
+    }
+
+    .contact-bottom h5 {
+        color: #243b64;
+        font-weight: 700;
+    }
+
+    .contact-bottom p {
+        color: #657187;
+        margin-bottom: 0;
+    }
+
+    @media (max-width: 576px) {
+        .contact-hero {
+            padding: 38px 18px;
+        }
+
+        .contact-hero h1 {
+            font-size: 1.9rem;
+        }
+
+        .contact-card {
+            padding: 21px;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+
+    <!-- Page Header -->
+    <section class="contact-hero">
+        <h1><i class="bi bi-chat-dots me-2"></i>Get in Touch</h1>
+        <p>
+            Have a question, suggestion, or feedback about EventOps AI?
+            Send us a message and we'll be glad to hear from you.
+        </p>
+    </section>
+
+    <div class="row g-4">
+
+        <!-- Contact Information -->
+        <div class="col-lg-5">
+            <div class="contact-card">
+                <h4>Contact Information</h4>
+
+                <div class="contact-info-item">
+                    <div class="contact-icon">
+                        <i class="bi bi-envelope"></i>
+                    </div>
+                    <div>
+                        <h6>Email</h6>
+                        <a href="mailto:you@example.com">
+                            you@example.com
+                        </a>
+                    </div>
+                </div>
+
+                <div class="contact-info-item">
+                    <div class="contact-icon">
+                        <i class="bi bi-geo-alt"></i>
+                    </div>
+                    <div>
+                        <h6>Address</h6>
+                        <p>
+                            Add your organisation or institution address here.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="contact-info-item">
+                    <div class="contact-icon">
+                        <i class="bi bi-telephone"></i>
+                    </div>
+                    <div>
+                        <h6>Phone</h6>
+                        <a href="tel:+910000000000">
+                            +91 00000 00000
+                        </a>
+                    </div>
+                </div>
+
+                <div class="contact-info-item">
+                    <div class="contact-icon">
+                        <i class="bi bi-clock"></i>
+                    </div>
+                    <div>
+                        <h6>Availability</h6>
+                        <p>Monday – Friday · 9:00 AM – 5:00 PM</p>
+                    </div>
+                </div>
+
+                <hr class="my-4">
+
+                <h5 class="fw-bold" style="color: #243b64;">
+                    Connect With Us
+                </h5>
+                <p class="text-muted small">
+                    Follow our project and development updates.
+                </p>
+
+                <div class="social-links">
+                    <a href="https://www.linkedin.com/"
+                       target="_blank" rel="noopener noreferrer"
+                       class="social-link" aria-label="LinkedIn"
+                       title="LinkedIn">
+                        <i class="bi bi-linkedin"></i>
+                    </a>
+
+                    <a href="https://www.instagram.com/"
+                       target="_blank" rel="noopener noreferrer"
+                       class="social-link" aria-label="Instagram"
+                       title="Instagram">
+                        <i class="bi bi-instagram"></i>
+                    </a>
+
+                    <a href="https://github.com/"
+                       target="_blank" rel="noopener noreferrer"
+                       class="social-link" aria-label="GitHub"
+                       title="GitHub">
+                        <i class="bi bi-github"></i>
+                    </a>
+
+                    <a href="https://x.com/"
+                       target="_blank" rel="noopener noreferrer"
+                       class="social-link" aria-label="X"
+                       title="X">
+                        <i class="bi bi-twitter-x"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Message Form -->
+        <div class="col-lg-7">
+            <div class="contact-card">
+                <h4>Send Us a Message</h4>
+
+                <p class="text-muted mb-4">
+                    Fill out the form below with your details and message.
+                </p>
+
+                <form action="{{ url_for('contact') }}"
+                      method="POST"
+                      class="contact-form">
+
+                    {# Include this if Flask-WTF CSRF protection is enabled. #}
+                    {% if csrf_token is defined %}
+                        <input type="hidden" name="csrf_token"
+                               value="{{ csrf_token() }}">
+                    {% endif %}
+
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label for="name" class="form-label">
+                                Full Name
+                            </label>
+                            <input type="text"
+                                   class="form-control"
+                                   id="name"
+                                   name="name"
+                                   placeholder="Enter your name"
+                                   maxlength="100"
+                                   autocomplete="name"
+                                   required>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="email" class="form-label">
+                                Email Address
+                            </label>
+                            <input type="email"
+                                   class="form-control"
+                                   id="email"
+                                   name="email"
+                                   placeholder="you@example.com"
+                                   maxlength="254"
+                                   autocomplete="email"
+                                   required>
+                        </div>
+
+                        <div class="col-12">
+                            <label for="subject" class="form-label">
+                                Subject
+                            </label>
+                            <input type="text"
+                                   class="form-control"
+                                   id="subject"
+                                   name="subject"
+                                   placeholder="What is your message about?"
+                                   maxlength="150"
+                                   required>
+                        </div>
+
+                        <div class="col-12">
+                            <label for="message" class="form-label">
+                                Your Message
+                            </label>
+                            <textarea class="form-control"
+                                      id="message"
+                                      name="message"
+                                      rows="5"
+                                      maxlength="5000"
+                                      placeholder="Write your message here..."
+                                      required></textarea>
+                            <small class="text-muted">
+                                Please keep your message under 5,000 characters.
+                            </small>
+                        </div>
+
+                        <div class="col-12">
+                            <button type="submit" class="btn btn-contact">
+                                <i class="bi bi-send me-2"></i>
+                                Send Message
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Bottom Section -->
+    <section class="contact-bottom">
+        <h5>We're Happy to Hear From You</h5>
+        <p>
+            Your questions and suggestions can help us improve EventOps AI.
+        </p>
+    </section>
+
+</div>
+{% endblock %}
