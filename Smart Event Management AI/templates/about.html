@@ -1,0 +1,1007 @@
+{% extends "base.html" %}
+
+{% block title %}About Us | EventOps AI{% endblock %}
+
+{% block extra_css %}
+<style>
+    :root {
+        --event-primary: #0d6efd;
+        --event-purple: #6610f2;
+        --event-dark: #10172a;
+        --event-muted: #697386;
+        --event-bg: #f6f8fc;
+    }
+
+    body {
+        background: var(--event-bg);
+    }
+
+    .about-page {
+        max-width: 1450px;
+        margin: auto;
+        color: var(--event-dark);
+    }
+.about-hero {
+    background: linear-gradient(110deg, #2864f0 0%, #7025ed 55%, #cf2e91 100%);
+    color: #ffffff;
+    padding: 65px 35px;
+    border-radius: 24px;
+    text-align: center;
+    margin-bottom: 45px;
+}
+
+.about-hero h1 {
+    color: #ffffff;
+    font-size: 2.4rem;
+    font-weight: 700;
+    margin-bottom: 16px;
+}
+
+.about-hero p {
+    color: rgba(255, 255, 255, 0.92);
+    max-width: 750px;
+    margin: 0 auto;
+    line-height: 1.8;
+    font-size: 1.05rem;
+}
+
+.about-section h2 {
+    color: #2864f0;
+    font-weight: 700;
+    margin-bottom: 16px;
+}
+
+.about-card i {
+    font-size: 1.7rem;
+    color: #2864f0;
+    margin-bottom: 15px;
+}
+
+.about-note {
+    background: #f4f7fb;
+    border-left: 4px solid #7025ed;
+    padding: 22px;
+    border-radius: 8px;
+}
+
+@media (max-width: 576px) {
+    .about-hero {
+        padding: 40px 20px;
+        border-radius: 18px;
+    }
+
+    .about-hero h1 {
+        font-size: 1.9rem;
+    }
+}
+    .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 9px;
+        padding: 9px 15px;
+        border: 1px solid rgba(255,255,255,.2);
+        border-radius: 30px;
+        background: rgba(255,255,255,.08);
+        color: #dce6ff;
+        font-size: .82rem;
+        font-weight: 600;
+        letter-spacing: .5px;
+    }
+
+    .eyebrow-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: #62e6b7;
+        box-shadow: 0 0 12px #62e6b7;
+    }
+
+    .about-hero h1 {
+        font-size: clamp(2.5rem, 5vw, 4.3rem);
+        line-height: 1.12;
+        letter-spacing: -2px;
+        font-weight: 800;
+        margin: 25px 0 20px;
+    }
+
+    .gradient-text {
+        background: linear-gradient(90deg, #79c2ff, #d1a7ff);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+    }
+
+    .about-hero .hero-description {
+        color: #d4def2;
+        font-size: 1.08rem;
+        line-height: 1.9;
+        max-width: 670px;
+    }
+
+    .hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 30px;
+    }
+
+    .hero-actions .btn {
+        padding: 13px 23px;
+        border-radius: 12px;
+        font-weight: 600;
+    }
+
+    .hero-visual {
+        min-height: 340px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+    }
+
+    .orbit {
+        width: 290px;
+        height: 290px;
+        border: 1px solid rgba(255,255,255,.22);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        animation: orbitFloat 6s ease-in-out infinite;
+    }
+
+    .orbit::before {
+        content: "";
+        position: absolute;
+        width: 220px;
+        height: 220px;
+        border: 1px dashed rgba(255,255,255,.25);
+        border-radius: 50%;
+    }
+
+    .orbit-core {
+        width: 120px;
+        height: 120px;
+        border-radius: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 3.6rem;
+        background: linear-gradient(135deg, #0d6efd, #8a42ed);
+        box-shadow: 0 0 60px rgba(105,87,255,.45);
+        transform: rotate(-8deg);
+    }
+
+    .orbit-core i {
+        transform: rotate(8deg);
+    }
+
+    .orbit-node {
+        position: absolute;
+        width: 55px;
+        height: 55px;
+        border: 1px solid rgba(255,255,255,.18);
+        border-radius: 17px;
+        background: #202e4e;
+        color: #b9d6ff;
+        display: grid;
+        place-items: center;
+        font-size: 1.35rem;
+        box-shadow: 0 8px 25px rgba(0,0,0,.18);
+    }
+
+    .node-one { top: 0; left: 118px; }
+    .node-two { right: 0; top: 115px; }
+    .node-three { bottom: 0; left: 118px; }
+    .node-four { left: 0; top: 115px; }
+
+    @keyframes orbitFloat {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-9px); }
+    }
+
+    .section-block {
+        padding: 76px 0 0;
+    }
+
+    .section-kicker {
+        color: var(--event-primary);
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        font-size: .76rem;
+        font-weight: 800;
+        margin-bottom: 12px;
+    }
+
+    .section-heading {
+        font-size: clamp(1.8rem, 3vw, 2.7rem);
+        font-weight: 800;
+        letter-spacing: -1px;
+        margin-bottom: 14px;
+    }
+
+    .section-description {
+        max-width: 720px;
+        margin: 0 auto;
+        color: var(--event-muted);
+        line-height: 1.85;
+    }
+
+    .intro-card {
+        background: white;
+        border: 1px solid #e8edf5;
+        border-radius: 22px;
+        padding: 32px;
+        height: 100%;
+        transition: transform .25s, box-shadow .25s;
+    }
+
+    .intro-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 18px 40px rgba(25,40,80,.08);
+    }
+
+    .icon-box {
+        width: 55px;
+        height: 55px;
+        border-radius: 17px;
+        display: grid;
+        place-items: center;
+        font-size: 1.55rem;
+        margin-bottom: 22px;
+    }
+
+    .icon-blue { background: #e8f1ff; color: #0d6efd; }
+    .icon-purple { background: #f0eaff; color: #7540d9; }
+    .icon-green { background: #e3f9ef; color: #149765; }
+    .icon-orange { background: #fff0e4; color: #e58228; }
+    .icon-pink { background: #ffeaf2; color: #d63384; }
+    .icon-cyan { background: #e4f8ff; color: #138da9; }
+
+    .intro-card h3 {
+        font-size: 1.12rem;
+        font-weight: 750;
+        margin-bottom: 12px;
+    }
+
+    .intro-card p {
+        color: var(--event-muted);
+        font-size: .94rem;
+        line-height: 1.8;
+        margin-bottom: 0;
+    }
+
+    .agents-section {
+        background: white;
+        border: 1px solid #e8edf5;
+        border-radius: 28px;
+        padding: 45px;
+        margin-top: 76px;
+    }
+
+    .agent-card {
+        height: 100%;
+        background: #fff;
+        border: 1px solid #e8edf5;
+        border-radius: 19px;
+        padding: 25px;
+        transition: .25s ease;
+    }
+
+    .agent-card:hover {
+        transform: translateY(-6px);
+        border-color: #c9d8ff;
+        box-shadow: 0 16px 35px rgba(35,65,120,.09);
+    }
+
+    .agent-number {
+        color: #a4afc2;
+        font-size: .8rem;
+        font-weight: 800;
+        letter-spacing: 1px;
+    }
+
+    .agent-card h3 {
+        font-size: 1.04rem;
+        font-weight: 750;
+        margin: 17px 0 10px;
+    }
+
+    .agent-card p {
+        color: var(--event-muted);
+        font-size: .88rem;
+        line-height: 1.8;
+        margin-bottom: 0;
+    }
+
+    .agent-icon {
+        width: 49px;
+        height: 49px;
+        border-radius: 15px;
+        display: grid;
+        place-items: center;
+        font-size: 1.4rem;
+    }
+
+    .intelligence-panel {
+        margin-top: 25px;
+        padding: 30px;
+        border-radius: 20px;
+        background: linear-gradient(120deg, #111a31, #242b57);
+        color: white;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .intelligence-panel h3 {
+        font-size: 1.35rem;
+        font-weight: 750;
+    }
+
+    .intelligence-panel p {
+        color: #c7d1e7;
+        line-height: 1.8;
+        margin-bottom: 0;
+    }
+
+    .engine-icon {
+        width: 66px;
+        height: 66px;
+        flex-shrink: 0;
+        display: grid;
+        place-items: center;
+        border-radius: 20px;
+        background: linear-gradient(135deg, #0d6efd, #8d48ee);
+        font-size: 1.9rem;
+    }
+
+    .engine-tag {
+        display: inline-block;
+        margin: 7px 5px 0 0;
+        padding: 7px 11px;
+        border-radius: 9px;
+        border: 1px solid rgba(255,255,255,.16);
+        background: rgba(255,255,255,.06);
+        font-size: .76rem;
+        color: #e0e8ff;
+    }
+
+    .workflow-wrap {
+        background: #edf2fb;
+        border-radius: 24px;
+        padding: 35px;
+    }
+
+    .workflow-step {
+        background: white;
+        border: 1px solid #e5ebf5;
+        border-radius: 18px;
+        padding: 23px 17px;
+        height: 100%;
+        text-align: center;
+    }
+
+    .step-circle {
+        width: 45px;
+        height: 45px;
+        display: grid;
+        place-items: center;
+        margin: 0 auto 17px;
+        border-radius: 14px;
+        color: white;
+        background: linear-gradient(135deg, #0d6efd, #7540df);
+        font-weight: 800;
+    }
+
+    .workflow-step h3 {
+        font-size: .98rem;
+        font-weight: 750;
+    }
+
+    .workflow-step p {
+        font-size: .85rem;
+        line-height: 1.7;
+        color: var(--event-muted);
+        margin: 0;
+    }
+
+    .role-card {
+        border-radius: 22px;
+        background: white;
+        border: 1px solid #e8edf5;
+        padding: 30px;
+        height: 100%;
+    }
+
+    .role-card h3 {
+        font-size: 1.1rem;
+        font-weight: 750;
+        margin: 16px 0 10px;
+    }
+
+    .role-card p {
+        color: var(--event-muted);
+        line-height: 1.8;
+        font-size: .92rem;
+    }
+
+    .role-list {
+        list-style: none;
+        padding: 0;
+        margin: 18px 0 0;
+    }
+
+    .role-list li {
+        padding: 8px 0;
+        font-size: .9rem;
+        color: #44516a;
+    }
+
+    .role-list i {
+        color: #168d64;
+        margin-right: 9px;
+    }
+
+    .tech-card {
+        padding: 24px;
+        background: white;
+        border: 1px solid #e8edf5;
+        border-radius: 17px;
+        height: 100%;
+    }
+
+    .tech-card i {
+        font-size: 1.65rem;
+        color: var(--event-primary);
+    }
+
+    .tech-card h3 {
+        font-size: 1rem;
+        font-weight: 750;
+        margin: 15px 0 8px;
+    }
+
+    .tech-card p {
+        color: var(--event-muted);
+        font-size: .86rem;
+        line-height: 1.7;
+        margin: 0;
+    }
+
+    .closing-banner {
+        margin-top: 76px;
+        padding: 55px 30px;
+        border-radius: 27px;
+        color: white;
+        text-align: center;
+        background: linear-gradient(120deg, #0d6efd, #6533cc);
+        box-shadow: 0 20px 45px rgba(68,65,190,.2);
+    }
+
+    .closing-banner h2 {
+        font-weight: 800;
+        letter-spacing: -.7px;
+    }
+
+    .closing-banner p {
+        color: #e8eaff;
+        line-height: 1.8;
+        max-width: 650px;
+        margin: 15px auto 25px;
+    }
+
+    .closing-banner .btn {
+        padding: 13px 24px;
+        border-radius: 12px;
+        font-weight: 700;
+    }
+
+    @media (max-width: 991px) {
+        .about-hero {
+            padding: 50px 35px;
+        }
+
+        .hero-visual {
+            min-height: 290px;
+            margin-top: 20px;
+        }
+
+        .agents-section {
+            padding: 28px;
+        }
+    }
+
+    @media (max-width: 576px) {
+        .about-hero {
+            padding: 35px 23px;
+            border-radius: 21px;
+        }
+
+        .about-hero h1 {
+            letter-spacing: -1px;
+        }
+
+        .hero-visual {
+            min-height: 250px;
+        }
+
+        .orbit {
+            transform: scale(.8);
+        }
+
+        .section-block {
+            padding-top: 52px;
+        }
+
+        .agents-section {
+            margin-top: 52px;
+            padding: 20px;
+            border-radius: 20px;
+        }
+
+        .workflow-wrap {
+            padding: 18px;
+        }
+
+        .closing-banner {
+            margin-top: 52px;
+            padding: 40px 22px;
+        }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        *, *::before, *::after {
+            animation-duration: .01ms !important;
+            transition-duration: .01ms !important;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="about-page">
+
+    <!-- HERO -->
+    <section class="about-hero mb-2">
+        <div class="row align-items-center">
+            <div class="col-lg-7">
+                <div class="eyebrow">
+                    <span class="eyebrow-dot"></span>
+                    INTELLIGENT EVENT OPERATIONS
+                </div>
+
+                <h1>
+                    Events, managed<br>
+                    with <span class="gradient-text">intelligence.</span>
+                </h1>
+
+                <p class="hero-description">
+                    Meet EventOps AI — an agent-powered event management
+                    platform designed to simplify complex operations,
+                    coordinate essential workflows, and help organisers
+                    make smarter, data-informed decisions.
+                </p>
+
+                <div class="hero-actions">
+                    {% if current_user.is_authenticated %}
+                    <a href="{{ url_for('dashboard') }}"
+                       class="btn btn-light">
+                        <i class="bi bi-speedometer2 me-2"></i>
+                        Explore Dashboard
+                    </a>
+                    {% else %}
+                    <a href="{{ url_for('register') }}"
+                       class="btn btn-light">
+                        <i class="bi bi-arrow-right-circle me-2"></i>
+                        Get Started
+                    </a>
+                    {% endif %}
+
+                    <a href="#our-agents"
+                       class="btn btn-outline-light">
+                        Discover Our Agents
+                        <i class="bi bi-arrow-down ms-2"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-lg-5">
+                <div class="hero-visual">
+                    <div class="orbit">
+                        <div class="orbit-core">
+                            <i class="bi bi-robot"></i>
+                        </div>
+                        <div class="orbit-node node-one">
+                            <i class="bi bi-people"></i>
+                        </div>
+                        <div class="orbit-node node-two">
+                            <i class="bi bi-building"></i>
+                        </div>
+                        <div class="orbit-node node-three">
+                            <i class="bi bi-graph-up-arrow"></i>
+                        </div>
+                        <div class="orbit-node node-four">
+                            <i class="bi bi-shield-check"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT THE PLATFORM -->
+    <section class="section-block">
+        <div class="text-center mb-5">
+            <div class="section-kicker">About the platform</div>
+            <h2 class="section-heading">Beyond traditional event management</h2>
+            <p class="section-description">
+                Event planning involves many moving parts. EventOps AI brings
+                attendee registration, venue coordination, speaker schedules,
+                sponsorship tracking, and incident handling into one
+                connected management platform.
+            </p>
+        </div>
+
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="intro-card">
+                    <div class="icon-box icon-blue">
+                        <i class="bi bi-diagram-3"></i>
+                    </div>
+                    <h3>Connected Operations</h3>
+                    <p>
+                        Organise essential event information in a centralised
+                        system instead of managing disconnected workflows
+                        manually.
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="intro-card">
+                    <div class="icon-box icon-purple">
+                        <i class="bi bi-cpu"></i>
+                    </div>
+                    <h3>Agentic AI Approach</h3>
+                    <p>
+                        Use specialised AI-assisted modules to support
+                        individual operational tasks and coordinate
+                        information across event management functions.
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="intro-card">
+                    <div class="icon-box icon-green">
+                        <i class="bi bi-lightning-charge"></i>
+                    </div>
+                    <h3>Faster Decisions</h3>
+                    <p>
+                        Bring registrations, resource information, and
+                        incident records together to help organisers
+                        identify issues and respond efficiently.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI AGENTS -->
+    <section class="agents-section" id="our-agents">
+        <div class="text-center mb-5">
+            <div class="section-kicker">The intelligence layer</div>
+            <h2 class="section-heading">Meet your event operations team</h2>
+            <p class="section-description">
+                Five specialised agents focus on different operational
+                responsibilities, supported by a central Event Intelligence
+                Engine.
+            </p>
+        </div>
+
+        <div class="row g-4">
+
+            <div class="col-md-6 col-lg-4">
+                <article class="agent-card">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="agent-icon icon-blue">
+                            <i class="bi bi-person-check"></i>
+                        </div>
+                        <span class="agent-number">AGENT 01</span>
+                    </div>
+                    <h3>Registration Agent</h3>
+                    <p>
+                        Supports attendee signups, registration validation,
+                        ticket tracking, check-in management, and attendance
+                        reporting.
+                    </p>
+                </article>
+            </div>
+
+            <div class="col-md-6 col-lg-4">
+                <article class="agent-card">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="agent-icon icon-purple">
+                            <i class="bi bi-buildings"></i>
+                        </div>
+                        <span class="agent-number">AGENT 02</span>
+                    </div>
+                    <h3>Venue Agent</h3>
+                    <p>
+                        Helps organisers manage venue capacity, room
+                        availability, utilisation information, and
+                        seating or resource allocation.
+                    </p>
+                </article>
+            </div>
+
+            <div class="col-md-6 col-lg-4">
+                <article class="agent-card">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="agent-icon icon-orange">
+                            <i class="bi bi-mic"></i>
+                        </div>
+                        <span class="agent-number">AGENT 03</span>
+                    </div>
+                    <h3>Speaker Agent</h3>
+                    <p>
+                        Supports speaker profiles, session assignments,
+                        availability tracking, schedule coordination,
+                        and identification of potential overlaps.
+                    </p>
+                </article>
+            </div>
+
+            <div class="col-md-6 col-lg-4">
+                <article class="agent-card">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="agent-icon icon-green">
+                            <i class="bi bi-trophy"></i>
+                        </div>
+                        <span class="agent-number">AGENT 04</span>
+                    </div>
+                    <h3>Sponsorship Agent</h3>
+                    <p>
+                        Organises sponsor commitments, deliverables,
+                        visibility metrics, and return-on-investment
+                        information.
+                    </p>
+                </article>
+            </div>
+
+            <div class="col-md-6 col-lg-4">
+                <article class="agent-card">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="agent-icon icon-pink">
+                            <i class="bi bi-exclamation-triangle"></i>
+                        </div>
+                        <span class="agent-number">AGENT 05</span>
+                    </div>
+                    <h3>Incident Agent</h3>
+                    <p>
+                        Records operational issues, organises incidents
+                        by severity, tracks resolution status, and
+                        supports response coordination.
+                    </p>
+                </article>
+            </div>
+
+            <div class="col-md-6 col-lg-4">
+                <article class="agent-card">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="agent-icon icon-cyan">
+                            <i class="bi bi-bell"></i>
+                        </div>
+                        <span class="agent-number">WORKFLOW</span>
+                    </div>
+                    <h3>Notifications & Reminders</h3>
+                    <p>
+                        Supports event-related notifications, scheduled
+                        reminders, and communication workflows to keep
+                        participants informed.
+                    </p>
+                </article>
+            </div>
+        </div>
+
+        <!-- CENTRAL INTELLIGENCE ENGINE -->
+        <div class="intelligence-panel">
+            <div class="row align-items-center g-4">
+                <div class="col-lg-8">
+                    <div class="d-flex align-items-start gap-3">
+                        <div class="engine-icon">
+                            <i class="bi bi-cpu"></i>
+                        </div>
+                        <div>
+                            <span class="text-uppercase small fw-bold"
+                                  style="color:#a9c8ff;letter-spacing:1.5px;">
+                                Central coordination layer
+                            </span>
+                            <h3 class="mt-2">Event Intelligence Engine</h3>
+                            <p>
+                                The central intelligence layer brings together
+                                operational information to support event health
+                                assessment, bottleneck identification,
+                                optimisation recommendations, and
+                                coordination across the agent modules.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4">
+                    <div class="engine-tag">
+                        <i class="bi bi-activity me-1"></i>
+                        Event Health
+                    </div>
+                    <div class="engine-tag">
+                        <i class="bi bi-graph-up me-1"></i>
+                        Analytics
+                    </div>
+                    <div class="engine-tag">
+                        <i class="bi bi-signpost-split me-1"></i>
+                        Recommendations
+                    </div>
+                    <div class="engine-tag">
+                        <i class="bi bi-diagram-3 me-1"></i>
+                        Coordination
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section class="section-block">
+        <div class="text-center mb-5">
+            <div class="section-kicker">The workflow</div>
+            <h2 class="section-heading">From event data to action</h2>
+            <p class="section-description">
+                A unified workflow helps organisers manage event activities
+                and respond to operational changes.
+            </p>
+        </div>
+
+        <div class="workflow-wrap">
+            <div class="row g-3">
+                <div class="col-md-6 col-lg-3">
+                    <div class="workflow-step">
+                        <div class="step-circle">01</div>
+                        <h3>Collect</h3>
+                        <p>
+                            Gather registrations, schedules, venue details,
+                            sponsor information, and incident reports.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-3">
+                    <div class="workflow-step">
+                        <div class="step-circle">02</div>
+                        <h3>Coordinate</h3>
+                        <p>
+                            Organise the information across the relevant
+                            event management modules and agents.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-3">
+                    <div class="workflow-step">
+                        <div class="step-circle">03</div>
+                        <h3>Analyse</h3>
+                        <p>
+                            Review operational indicators, identify
+                            potential bottlenecks, and surface useful insights.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-3">
+                    <div class="workflow-step">
+                        <div class="step-circle">04</div>
+                        <h3>Respond</h3>
+                        <p>
+                            Help organisers prioritise issues, follow
+                            up on tasks, and coordinate event responses.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- DASHBOARDS -->
+    <section class="section-block">
+        <div class="text-center mb-5">
+            <div class="section-kicker">Designed for every role</div>
+            <h2 class="section-heading">One platform. Different perspectives.</h2>
+            <p class="section-description">
+                Role-based access keeps attendee activities and
+                administrative operations organised.
+            </p>
+        </div>
+
+        <div class="row g-4">
+            <div class="col-md-6">
+                <div class="role-card">
+                    <div class="icon-box icon-blue">
+                        <i class="bi bi-person-circle"></i>
+                    </div>
+                    <h3>Attendee Dashboard</h3>
+                    <p>
+                        A self-service experience for discovering events
+                        and managing participation.
+                    </p>
+                    <ul class="role-list">
+                        <li><i class="bi bi-check-circle-fill"></i>Browse available events</li>
+                        <li><i class="bi bi-check-circle-fill"></i>Register and select tickets</li>
+                        <li><i class="bi bi-check-circle-fill"></i>View personal registrations</li>
+                        <li><i class="bi bi-check-circle-fill"></i>Manage check-in and reminders</li>
+                        <li><i class="bi bi-check-circle-fill"></i>Share event feedback</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="role-card">
+                    <div class="icon-box icon-purple">
+                        <i class="bi bi-speedometer2"></i>
+                    </div>
+                    <h3>Administrator Dashboard</h3>
+                    <p>
+                        A central workspace for managing event resources
+                        and monitoring operational activities.
+                    </p>
+                    <ul class="role-list">
+                        <li><i class="bi bi-check-circle-fill"></i>Manage events and registrations</li>
+                        <li><i class="bi bi-check-circle-fill"></i>Coordinate venues and speakers</li>
+                        <li><i class="bi bi-check-circle-fill"></i>Track sponsorships and deliverables</li>
+                        <li><i class="bi bi-check-circle-fill"></i>Monitor and resolve incidents</li>
+                        <li><i class="bi bi-check-circle-fill"></i>Review intelligence and notifications</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TECHNOLOGY -->
+    <section class="section-block">
+        <div class="text-center mb-5">
+            <div class="section-kicker">Under the hood</div>
+            <h2 class="section-heading">Technology powering EventOps AI</h2>
+            <p class="section-description">
+                A Python-based web application with persistent data,
+                an AI assistant, and a responsive user interface.
+            </p>
+        </div>
+
+
+    </section>
+
+    <!-- CTA -->
+    <section class="closing-banner">
+        <i class="bi bi-robot display-4 mb-3 d-block"></i>
+        <h2>Make every event work smarter.</h2>
+        <p>
+            Bring event operations into one place, simplify coordination,
+            and explore a more intelligent approach to event management
+            with EventOps AI.
+        </p>
+
+        {% if current_user.is_authenticated %}
+        <a href="{{ url_for('dashboard') }}" class="btn btn-light">
+            Go to Dashboard
+            <i class="bi bi-arrow-right ms-2"></i>
+        </a>
+        {% else %}
+        <a href="{{ url_for('register') }}" class="btn btn-light">
+            Create Your Account
+            <i class="bi bi-arrow-right ms-2"></i>
+        </a>
+        {% endif %}
+    </section>
+
+</div>
+{% endblock %}
